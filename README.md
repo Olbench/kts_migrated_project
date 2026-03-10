@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# KTS Project Next.js
 
-## Getting Started
+Миграция приложения с `React + MobX + Vite` на `Next.js 15` с использованием `App Router`.
 
-First, run the development server:
+## Стек
+
+- `Next.js 15`
+- `React 19`
+- `TypeScript`
+- `MobX`
+- `SCSS Modules`
+
+## Скрипты
 
 ```bash
-npm run dev
-# or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
+yarn build
+yarn start
+yarn lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Архитектура
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Публичные страницы каталога и товара реализованы через `App Router` в `src/app`.
+- Загрузка данных каталога и товара выполняется на сервере через встроенный `fetch`.
+- Корзина реализована как клиентская часть на `MobX`.
+- Глобальный store подключён через `RootStoreProvider`.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Переменные окружения
 
-## Learn More
+Создайте `.env.local` при необходимости:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+NEXT_PUBLIC_API_BASE_URL=https://front-school-strapi.ktsdev.ru/api
+NEXT_PUBLIC_ENABLE_CART_SYNC=false
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Ссылки
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Prod: `not deployed yet`
+- Repository: `https://github.com/Olbench/kts_migrated_project.git`
 
-## Deploy on Vercel
+## Примечания
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Для внешних изображений настроены `images.remotePatterns`.
+- Шрифт подключён через `next/font/local`.
+- Если внешний Strapi или MinIO недоступен по сети, каталог и изображения могут не загрузиться.

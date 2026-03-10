@@ -1,0 +1,28 @@
+.button {
+  width: auto;
+  height: auto;
+  min-height: 52px;
+  padding: var(--spacing-s) var(--spacing-l);
+  gap: var(--spacing-xxs);
+  color: var(--button-primary-text);
+  border: none;
+  background-color: var(--button-primary-bg);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button:hover:not(.buttonDisabled):not(.buttonLoading) {
+  background-color: var(--brand-hover);
+}
+
+.buttonDisabled {
+  background-color: var(--button-primary-bg-disabled);
+  cursor: not-allowed;
+}
+
+.buttonLoading {
+  display: inline-flex;
+  align-items: center;
+  padding: 14px var(--spacing-l);
+}
