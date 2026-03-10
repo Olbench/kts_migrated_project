@@ -1,0 +1,60 @@
+.text {
+  color: rgba(0, 0, 0, 1);
+  text-align: left;
+  font-weight: 400;
+}
+
+.title {
+  font-size: 44px;
+  font-weight: 700;
+  line-height: 48px;
+}
+
+.button {
+  font-size: 18px;
+  line-height: 18px;
+}
+
+.p20 {
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.p18 {
+  font-size: 18px;
+  line-height: 22px;
+}
+
+.p16 {
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.p14 {
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.weightNormal {
+  font-weight: 400;
+}
+
+.weightMedium {
+  font-weight: 500;
+}
+
+.weightBold {
+  font-weight: 700;
+}
+
+.colorPrimary {
+  color: var(--text-primary);
+}
+
+.colorSecondary {
+  color: var(--text-secondary);
+}
+
+.colorAccent {
+  color: var(--text-accent);
+}
