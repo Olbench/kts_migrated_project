@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 
 import type { CategoryEntity } from '@/types/product'
@@ -5,13 +6,12 @@ import type { CategoryEntity } from '@/types/product'
 import styles from './Categories.module.scss'
 
 type CategoriesProps = {
-  categories: CategoryEntity[]
+  categories: (CategoryEntity & { previewImageUrl?: string })[]
 }
 
 const buildCategoryHref = (category: CategoryEntity): string => {
   const params = new URLSearchParams()
   params.set('categoryId', String(category.id))
-  params.set('category', category.title)
   return `/products?${params.toString()}`
 }
 
@@ -29,6 +29,18 @@ export default function Categories({ categories }: CategoriesProps) {
         <div className={styles.grid}>
           {categories.map((category) => (
             <Link key={category.id} className={styles.card} href={buildCategoryHref(category)}>
+              {category.previewImageUrl ? (
+                <Image
+                  alt={category.title}
+                  className={styles.cardImage}
+                  height={160}
+                  src={category.previewImageUrl}
+                  unoptimized
+                  width={320}
+                />
+              ) : (
+                <div className={styles.cardImage} />
+              )}
               <span className={styles.cardTitle}>{category.title}</span>
               <span className={styles.cardLink}>View products</span>
             </Link>

@@ -1,7 +1,9 @@
 import Link from 'next/link'
 
+import ProductsFilters from '@/pages/Products/components/ProductsFilters'
 import ProductItem from '@/pages/Products/components/ProductItem'
 import ProductsPagination from '@/pages/Products/components/ProductsPagination'
+import ProductsScrollToTop from '@/pages/Products/components/ProductsScrollToTop'
 import type { CategoryEntity, ProductEntity } from '@/types/product'
 
 import styles from './Products.module.scss'
@@ -38,12 +40,10 @@ const getPaginationItems = (currentPage: number, totalPages: number): Pagination
 const buildProductsHref = ({
   search,
   categoryId,
-  categoryTitle,
   page,
 }: {
   search?: string
   categoryId?: number
-  categoryTitle?: string
   page?: number
 }): string => {
   const params = new URLSearchParams()
@@ -52,9 +52,8 @@ const buildProductsHref = ({
     params.set('search', search)
   }
 
-  if (categoryId && categoryTitle) {
+  if (categoryId) {
     params.set('categoryId', String(categoryId))
-    params.set('category', categoryTitle)
   }
 
   if (page && page > 1) {
@@ -79,6 +78,7 @@ export default function Products({
 
   return (
     <section className={styles.page}>
+      <ProductsScrollToTop />
       <div className={styles.hero}>
         <h1 className={styles.title}>Products</h1>
         <p className={styles.subtitle}>
@@ -87,35 +87,11 @@ export default function Products({
         </p>
       </div>
 
-      <form action="/products" className={styles.searchForm} method="get">
-        <div className={styles.searchRow}>
-          <input
-            className={styles.searchInput}
-            defaultValue={search}
-            name="search"
-            placeholder="Search product"
-            type="text"
-          />
-          <button className={styles.findButton} type="submit">
-            Find now
-          </button>
-        </div>
-
-        <div className={styles.filterRow}>
-          <select
-            className={styles.select}
-            defaultValue={selectedCategoryId ? String(selectedCategoryId) : ''}
-            name="categoryId"
-          >
-            <option value="">All categories</option>
-            {categories.map((category) => (
-              <option key={category.id} value={category.id}>
-                {category.title}
-              </option>
-            ))}
-          </select>
-        </div>
-      </form>
+      <ProductsFilters
+        categories={categories}
+        initialCategoryId={selectedCategoryId}
+        initialSearch={search}
+      />
 
       {(search || selectedCategory) && (
         <div className={styles.filtersMeta}>
@@ -148,7 +124,6 @@ export default function Products({
             buildHref={(page) =>
               buildProductsHref({
                 categoryId: selectedCategory?.id,
-                categoryTitle: selectedCategory?.title,
                 page,
                 search,
               })
