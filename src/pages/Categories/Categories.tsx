@@ -1,0 +1,40 @@
+import Link from 'next/link'
+
+import type { CategoryEntity } from '@/types/product'
+
+import styles from './Categories.module.scss'
+
+type CategoriesProps = {
+  categories: CategoryEntity[]
+}
+
+const buildCategoryHref = (category: CategoryEntity): string => {
+  const params = new URLSearchParams()
+  params.set('categoryId', String(category.id))
+  params.set('category', category.title)
+  return `/products?${params.toString()}`
+}
+
+export default function Categories({ categories }: CategoriesProps) {
+  return (
+    <section className={styles.page}>
+      <div className={styles.hero}>
+        <h1 className={styles.title}>Categories</h1>
+        <p className={styles.subtitle}>Browse products by category and discover new items.</p>
+      </div>
+
+      {categories.length === 0 ? (
+        <p className={styles.state}>No categories found</p>
+      ) : (
+        <div className={styles.grid}>
+          {categories.map((category) => (
+            <Link key={category.id} className={styles.card} href={buildCategoryHref(category)}>
+              <span className={styles.cardTitle}>{category.title}</span>
+              <span className={styles.cardLink}>View products</span>
+            </Link>
+          ))}
+        </div>
+      )}
+    </section>
+  )
+}

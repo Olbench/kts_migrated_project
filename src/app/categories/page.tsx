@@ -1,11 +1,13 @@
 import type { Metadata } from 'next'
 
-import PlaceholderPage from '@/pages/PlaceholderPage'
+import { getCategories } from '@/api/categories'
+import Categories from '@/pages/Categories/Categories'
 
 export const metadata: Metadata = {
   title: 'Categories | Lalasia',
 }
 
-export default function CategoriesPage() {
-  return <PlaceholderPage title="Categories" />
+export default async function CategoriesPage() {
+  const categories = await getCategories({ revalidate: 300 })
+  return <Categories categories={categories} />
 }

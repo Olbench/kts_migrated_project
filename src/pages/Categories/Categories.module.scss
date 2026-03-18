@@ -1,0 +1,106 @@
+@use '@/styles/tokens' as *;
+@use '@/styles/mixins' as *;
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.hero {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.title {
+  margin: 0;
+  font-size: 40px;
+  line-height: 1.2;
+}
+
+.subtitle {
+  margin: 0 auto;
+  max-width: 620px;
+  color: $color-muted;
+  line-height: 1.5;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 20px;
+  border: 1px solid $color-border;
+  border-radius: 12px;
+  text-decoration: none;
+  color: $color-text;
+  background: $color-surface;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.card:hover {
+  border-color: $color-brand;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.cardTitle {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.cardLink {
+  font-size: 14px;
+  color: $color-brand;
+  font-weight: 500;
+}
+
+.state {
+  color: $color-muted;
+  text-align: center;
+  padding: 24px 0;
+}
+
+@include mq($bp-tablet) {
+  .page {
+    gap: 36px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+  }
+}
+
+@include mq($bp-laptop) {
+  .title {
+    font-size: 52px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+  }
+}
+
+@include mq($bp-desktop) {
+  .page {
+    gap: 44px;
+  }
+
+  .title {
+    font-size: 64px;
+  }
+
+  .grid {
+    gap: 28px;
+  }
+}
