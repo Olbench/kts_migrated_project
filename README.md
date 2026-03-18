@@ -13,10 +13,17 @@
 ## Скрипты
 
 ```bash
+<<<<<<< HEAD
+yarn dev
+yarn build
+yarn start
+yarn lint
+=======
 npm run dev
 npm run build
 npm run start
 npm run lint
+>>>>>>> origin/main
 ```
 
 ## Архитектура
@@ -38,8 +45,9 @@ NEXT_PUBLIC_ENABLE_CART_SYNC=false
 
 ## Ссылки
 
-- Prod: `not deployed yet
-- Repository: `TODO`
+- Prod: `not deployed yet`
+- Repository: `https://github.com/Olbench/kts_migrated_project.git`
+
 
 ## Примечания
 
