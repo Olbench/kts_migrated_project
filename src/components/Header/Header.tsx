@@ -4,6 +4,7 @@ import { observer } from 'mobx-react-lite'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { useState } from 'react'
 
 import ThemeToggle from '@/components/ThemeToggle/ThemeToggle'
 import { useCartStore } from '@/store/CartStoreContext'
@@ -14,9 +15,13 @@ const Header = observer(() => {
   const cartStore = useCartStore()
   const pathname = usePathname()
   const safePathname = pathname ?? ''
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const getNavClassName = (href: string): string =>
     `${styles.link} ${safePathname.startsWith(href) ? styles.linkActive : ''}`
+
+  const handleToggleMenu = () => setIsMenuOpen((prev) => !prev)
+  const handleCloseMenu = () => setIsMenuOpen(false)
 
   return (
     <header className={styles.header}>
@@ -33,12 +38,22 @@ const Header = observer(() => {
           <Link className={getNavClassName('/categories')} href="/categories">
             Categories
           </Link>
-          <Link className={getNavClassName('/about-us')} href="/about-us">
+          <Link className={getNavClassName('/about')} href="/about">
             About us
           </Link>
         </nav>
 
         <div className={styles.actions}>
+          <button
+            aria-label="Toggle menu"
+            className={styles.burger}
+            onClick={handleToggleMenu}
+            type="button"
+          >
+            <span />
+            <span />
+            <span />
+          </button>
           <div className={styles.themeToggle}>
             <ThemeToggle />
           </div>
@@ -65,6 +80,22 @@ const Header = observer(() => {
           </Link>
         </div>
       </div>
+
+      {isMenuOpen ? (
+        <div className={styles.mobileMenu} role="menu">
+          <nav className={styles.mobileNav}>
+            <Link className={styles.mobileLink} href="/products" onClick={handleCloseMenu}>
+              Products
+            </Link>
+            <Link className={styles.mobileLink} href="/categories" onClick={handleCloseMenu}>
+              Categories
+            </Link>
+            <Link className={styles.mobileLink} href="/about" onClick={handleCloseMenu}>
+              About us
+            </Link>
+          </nav>
+        </div>
+      ) : null}
     </header>
   )
 })
