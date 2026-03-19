@@ -77,39 +77,8 @@
   min-height: 44px;
   padding: 0 14px;
   cursor: pointer;
-  border-radius: 10px;
 }
 
-.counter {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 6px;
-  border-radius: 10px;
-  min-height: 44px;
-  background: $color-surface;
-}
-
-.counterButton {
-  width: 30px;
-  height: 30px;
-  border-radius: 6px;
-  border: none;
-  background: $color-brand;
-  color: $color-surface;
-  font-size: 16px;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.counterButton:hover {
-  filter: brightness(0.95);
-}
-
-.counterValue {
-  min-width: 18px;
-  text-align: center;
-  font-weight: 600;
+.addButtonInCart {
+  background: $color-muted;
 }
