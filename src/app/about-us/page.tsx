@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 
-import PlaceholderPage from '@/pages/PlaceholderPage'
+import PlaceholderPage from '@/screens/PlaceholderPage'
 
 export const metadata: Metadata = {
   title: 'About us | Lalasia',

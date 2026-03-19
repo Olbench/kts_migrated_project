@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 
-import CartPage from '@/pages/CartPage'
+import CartPage from '@/screens/CartPage'
 
 export const metadata: Metadata = {
   title: 'Cart | Lalasia',

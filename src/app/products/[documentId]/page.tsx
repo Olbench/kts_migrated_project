@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
 import { getProductByDocumentId } from '@/api/products'
-import ProductPage from '@/pages/ProductPage'
+import ProductPage from '@/screens/ProductPage'
 
 type ProductDetailsPageProps = {
   params: Promise<{ documentId: string }>

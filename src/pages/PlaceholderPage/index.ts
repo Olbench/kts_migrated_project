@@ -1,1 +1,1 @@
-export { default } from './PlaceholderPage'
+export { default } from '@/screens/PlaceholderPage/PlaceholderPage'

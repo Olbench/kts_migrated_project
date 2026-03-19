@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 
 import { getCategories } from '@/api/categories'
 import { getProducts } from '@/api/products'
-import Products from '@/pages/Products'
+import Products from '@/screens/Products'
 
 export const metadata: Metadata = {
   title: 'Products | Lalasia',

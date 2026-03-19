@@ -1,4 +1,4 @@
-import styles from '@/pages/ProductPage/ProductPage.module.scss'
+import styles from '@/screens/ProductPage/ProductPage.module.scss'
 
 export default function ProductDetailsLoading() {
   return (

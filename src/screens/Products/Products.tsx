@@ -1,7 +1,9 @@
 import Link from 'next/link'
 
-import ProductItem from '@/pages/Products/components/ProductItem'
-import ProductsPagination from '@/pages/Products/components/ProductsPagination'
+import ProductsFilters from '@/screens/Products/components/ProductsFilters'
+import ProductItem from '@/screens/Products/components/ProductItem'
+import ProductsPagination from '@/screens/Products/components/ProductsPagination'
+import ProductsScrollToTop from '@/screens/Products/components/ProductsScrollToTop'
 import type { CategoryEntity, ProductEntity } from '@/types/product'
 
 import styles from './Products.module.scss'
@@ -79,6 +81,7 @@ export default function Products({
 
   return (
     <section className={styles.page}>
+      <ProductsScrollToTop />
       <div className={styles.hero}>
         <h1 className={styles.title}>Products</h1>
         <p className={styles.subtitle}>
@@ -87,35 +90,11 @@ export default function Products({
         </p>
       </div>
 
-      <form action="/products" className={styles.searchForm} method="get">
-        <div className={styles.searchRow}>
-          <input
-            className={styles.searchInput}
-            defaultValue={search}
-            name="search"
-            placeholder="Search product"
-            type="text"
-          />
-          <button className={styles.findButton} type="submit">
-            Find now
-          </button>
-        </div>
-
-        <div className={styles.filterRow}>
-          <select
-            className={styles.select}
-            defaultValue={selectedCategoryId ? String(selectedCategoryId) : ''}
-            name="categoryId"
-          >
-            <option value="">All categories</option>
-            {categories.map((category) => (
-              <option key={category.id} value={category.id}>
-                {category.title}
-              </option>
-            ))}
-          </select>
-        </div>
-      </form>
+      <ProductsFilters
+        categories={categories}
+        initialCategoryId={selectedCategoryId}
+        initialSearch={search}
+      />
 
       {(search || selectedCategory) && (
         <div className={styles.filtersMeta}>

@@ -1,5 +1,5 @@
-import ProductSkeleton from '@/pages/Products/components/ProductSkeleton'
-import styles from '@/pages/Products/Products.module.scss'
+import ProductSkeleton from '@/screens/Products/components/ProductSkeleton'
+import styles from '@/screens/Products/Products.module.scss'
 
 export default function ProductsLoading() {
   return (
