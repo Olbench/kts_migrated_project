@@ -154,11 +154,11 @@
 .quantityControl {
   display: inline-flex;
   align-items: center;
-  border: 1px solid $color-border;
 }
 
 .quantityButton {
   border: none;
+  border-radius: 10px;
   background: $color-brand;
   color: $color-surface;
   width: 36px;

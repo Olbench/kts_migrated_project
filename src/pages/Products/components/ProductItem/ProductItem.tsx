@@ -15,14 +15,14 @@ type ProductItemProps = {
 
 const ProductItem = observer(({ product }: ProductItemProps) => {
   const cartStore = useCartStore()
-  const inCart = cartStore.isInCart(product.id)
+  const quantity = cartStore.getProductQuantity(product.id)
 
-  const handleCartClick = () => {
-    if (inCart) {
-      cartStore.removeItemFromCart(product.id)
-    } else {
-      cartStore.addToCart(product)
-    }
+  const handleAdd = () => {
+    cartStore.addToCart(product, 1)
+  }
+
+  const handleRemove = () => {
+    cartStore.removeFromCart(product.id, 1)
   }
 
   return (
@@ -49,13 +49,21 @@ const ProductItem = observer(({ product }: ProductItemProps) => {
         <p className={styles.description}>{product.description}</p>
         <div className={styles.footer}>
           <span className={styles.price}>${product.price.toFixed(2)}</span>
-          <button
-            className={`${styles.addButton} ${inCart ? styles.addButtonInCart : ''}`}
-            onClick={handleCartClick}
-            type="button"
-          >
-            {inCart ? 'In cart' : 'Add to cart'}
-          </button>
+          {quantity > 0 ? (
+            <div className={styles.counter} aria-label="Quantity selector">
+              <button className={styles.counterButton} onClick={handleRemove} type="button">
+                -
+              </button>
+              <span className={styles.counterValue}>{quantity}</span>
+              <button className={styles.counterButton} onClick={handleAdd} type="button">
+                +
+              </button>
+            </div>
+          ) : (
+            <button className={styles.addButton} onClick={handleAdd} type="button">
+              Add to cart
+            </button>
+          )}
         </div>
       </div>
     </article>
