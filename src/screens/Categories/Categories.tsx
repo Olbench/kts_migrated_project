@@ -6,7 +6,7 @@ import type { CategoryEntity } from '@/types/product'
 import styles from './Categories.module.scss'
 
 type CategoriesProps = {
-  categories: (CategoryEntity & { previewImageUrl?: string })[]
+  categories?: (CategoryEntity & { previewImageUrl?: string })[]
 }
 
 const buildCategoryHref = (category: CategoryEntity): string => {
@@ -15,7 +15,7 @@ const buildCategoryHref = (category: CategoryEntity): string => {
   return `/products?${params.toString()}`
 }
 
-export default function Categories({ categories }: CategoriesProps) {
+export default function Categories({ categories = [] }: CategoriesProps) {
   return (
     <section className={styles.page}>
       <div className={styles.hero}>
