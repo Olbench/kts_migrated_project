@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 
 import Header from '@/components/Header'
-import ScrollUp from '@/components/ScrollUp/ScrollUp'
 import '@/components/variables.css'
 import StoreProvider from '@/providers/StoreProvider'
 
@@ -45,7 +44,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <div className={styles.app}>
             <Header />
             <main className={styles.main}>{children}</main>
-            <ScrollUp />
           </div>
         </StoreProvider>
       </body>
